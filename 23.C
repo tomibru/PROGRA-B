@@ -93,3 +93,34 @@ int incisoD(arbol a, posicion p, int n){
 
 /*e) verificar si cumple que para todas las claves salvo las de las hojas, su 
 valor numérico es igual  a la cantidad de hijos. (función int y función void) */
+
+int incisoE(arbol a, posicion p){
+    posicion c;
+    int grado=0,cumple=1;
+    c= HijoMasIzq(p,a);
+    if(nulo(c))
+        return 1;
+    else{
+        while(!nulo(c) && cumple){
+            grado++;
+            cumple= cumple && incisoE(a,c);
+            c= HermanoDer(c,a);
+        }
+        return (Info(p,a) == grado) && cumple;
+    }
+}
+
+void incisoEplus(arbol a, posicion p,int * cumple){
+    posicion c;
+    int grado=0;
+    c= HijoMasIzq(p,a);
+    if(!nulo(c)){
+        while(!nulo(c) && *cumple){
+            grado++;
+            incisoEplus(a,c,cumple);
+            c= HermanoDer(c,a);
+        }
+        if(*cumple)
+            (*cumple) = Info(p,a) == grado;
+    }
+}
