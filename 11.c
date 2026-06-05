@@ -63,7 +63,7 @@ void mostrarProf2(int M[][max], int n, int VV[]){
 
 void MostrarAmp(int M[][max],int n){
     Tcola c;
-    int i,v,visitados[max]={0};
+    int i,v,visitados[max]={0},cantV=0;
     iniciaC(&c);
     v=0;
     visitados[0] = 1;
@@ -79,6 +79,35 @@ void MostrarAmp(int M[][max],int n){
                 printf("%d\t", i);
             }
         }
+    }
+}
+
+//version correcta
+
+void mostrarAmp2(int M[][max], int n, int VV[]){
+    int i=0,visitados=0,v,j;
+    Tcola c;
+
+    while(i<n && visitados<n){
+        if(!VV[i]){
+            iniciaC(&c);
+            poneC(&c,i);
+            VV[i]=1;
+
+            while(!vaciaC(c)){
+                sacaC(&c,&v);
+                printf("%d\n", v);
+                VV[v]++;
+                visitados++;
+
+                for(j=0; j<n; j++){
+                    if(M[v][j] && !VV[j])
+                        poneC(&c,j);
+                }
+            }
+        }
+
+        i++;
     }
 }
 
