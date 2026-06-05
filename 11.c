@@ -30,6 +30,35 @@ void MostrarProf(int M[][max], int n){
     }
 }
 
+//Segunda version
+
+void mostrarProf2(int M[][max], int n, int VV[]){
+    int i,visitados=0,v,j;
+    Tpila p;
+
+    while(i<n && visitados<n){
+        if(!VV[i]){
+            iniciaP(&p);
+            poneP(&p,i);
+
+            while(!vaciaP(p)){
+                sacoP(&p,&v);
+                if(!VV[v]){
+                    visitados++;
+                    VV[v]++;
+                    for(j=0;j<n;j++){
+                        if(M[v][j])
+                            poneP(&p,j);
+                    }
+                }
+
+            }
+        }
+        i++
+    }
+
+}
+
 //b) mostrar todos sus vértices mediante recorrido en amplitud 
 
 void MostrarAmp(int M[][max],int n){
