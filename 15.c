@@ -35,27 +35,33 @@ void kruskal(int M[][max], int n, int Mr[][max]){
 
 //NOTAS: SE PUEDE EVITAR AB USANDO CONTADOR DE ARISTAS
 
+//KRUSKAL BIEN HECHO
+
+
 
 //PRIM
 
+
 void prim(int M[][max],int Mr[][max], int n,int u[]){
-    int i,j,min,imin,jmin;
+    int i,j,min,imin,jmin,aristas=0;
 
     //elijo el vértice 0 como punto de partida
     u[0]=1;
-
-    for(i=0;i<n;i++){
-        if(u[i]){
-            min=999;
-            for(j=0;j<n;j++){
-                if(M[i][j]!=0 && M[i][j] < min && u[j]==0){
-                    min=M[i][j];
-                    imin= i;
-                    jmin= j;
+    while(aristas < n-1){
+        min=999;
+        for(i=0;i<n;i++){
+            if(u[i]){
+                for(j=0;j<n;j++){
+                    if(M[i][j]!=0 && M[i][j] < min && u[j]==0){
+                        min=M[i][j];
+                        imin= i;
+                        jmin= j;
+                    }
                 }
-            }
-            u[jmin]=1;
-            Mr[imin][jmin] = Mr[jmin][imin] = min;
-        }   
-    } 
+            }   
+        }
+        aristas++;
+        u[jmin]=1;
+        Mr[imin][jmin] = Mr[jmin][imin] = min;
+    }
 }
