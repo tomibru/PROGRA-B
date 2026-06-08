@@ -92,7 +92,6 @@ void mostrarAmp2(int M[][max], int n, int VV[]){
         if(!VV[i]){
             iniciaC(&c);
             poneC(&c,i);
-            VV[i]=1;
 
             while(!vaciaC(c)){
                 sacaC(&c,&v);

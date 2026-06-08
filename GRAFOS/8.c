@@ -49,13 +49,13 @@ int incisoC(int M[][max],int n, int i, int j,int x){
             return 0;
         else{
             if(j > i)
-                if(M[i][j] >= x)
+                if(M[i][j] > x)
                     return incisoC(M,n,i-1,n-1,x);
                 else
                     return incisoC(M,n,i,j-1,x);
             else
                 if(j < i)
-                    if(M[j][i] >= x)
+                    if(M[j][i] > x)
                         return incisoC(M,n,i-1,n-1,x);
                     else
                         return incisoC(M,n,i,j-1,x);

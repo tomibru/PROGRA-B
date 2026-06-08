@@ -39,3 +39,13 @@ int incisoC(int M[][max], int v, int n){
     return grado;
 }
 
+int grado(int M[][max], int v,int n){
+    int i; grado=0;
+    for(i=0;i<n;i++)
+        if(i<=v)
+            grado+= M[i][v] != 0;
+        else
+            grado+= M[v][i] != 0; 
+    return grado;
+}
+

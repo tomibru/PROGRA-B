@@ -67,6 +67,24 @@ int grado(arbol a, posicion p){
         return (maxHijo > maxLocal) ? maxHijo:maxLocal;
     }
 }
+//c) retornar su grado
+
+int gradoMax(arbol a,posicion p){
+    posicion c;
+    int gradoLoc=0,gradoHijo,hijoMax=0;
+    if(nulo(p))
+        return 0;
+    else{
+        c=hijomasizq(p,a);
+        while(!nulo(c)){
+            gradoLoc++;
+            gradoHijo= gradoMax(a,c);
+            hijoMax = (gradoHijo > hijoMax)? gradoHijo: hijoMax;
+            c= hermanoder(a,c);
+        } 
+        return (gradoLoc > hijoMax)? gradoLoc: hijoMax;
+    }
+}
 
 //d) hallar la cantidad de nodos de grado impar que hay en niveles impares. 
 
@@ -89,6 +107,23 @@ int incisoD(arbol a, posicion p, int n){
 
     }
 
+}
+//d) hallar la cantidad de nodos de grado impar que hay en niveles impares. 
+
+int incisoD(arbol a, posicion p, int n){
+    posicion c;
+    int gradoLoc=0, cont=0;
+    if(nulo(p))
+        return 0;
+    else{
+        c=hijomazizq(p,a);
+        while(!nulo(c)){
+            gradoLoc+= n % 2 != 0;
+            cont += incisoD(a,c,n+1);
+            c= hermanoDer(c,a);
+        }
+        return cont + (gradoLoc % 2 != 0);
+    }
 }
 
 /*e) verificar si cumple que para todas las claves salvo las de las hojas, su 
