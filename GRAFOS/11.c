@@ -59,6 +59,39 @@ void mostrarProf2(int M[][max], int n, int VV[]){
 
 }
 
+//version correcta  
+
+void profConexa(int M[][max], int n){
+    tpila p;
+    int visitados,vv[max] = {0},v,j;
+
+    inciaP(&p);
+    visitados=1;
+    v=0;
+    vv[0]=1;
+    poneP(&p,v);
+
+    while(visitados < n){
+        v= tope(p);
+        j=0;
+        while(j<n && (!M[v][j] || vv[j]))
+            j++;
+
+            if(j==n)
+                sacaP(&p,&v);
+            else{
+                vv[j] = 1;
+                visitados++;
+                poneP(&p,j);
+            }
+
+    }
+}
+
+void profundidad(int n, char ){
+
+}
+
 //b) mostrar todos sus vértices mediante recorrido en amplitud 
 
 void MostrarAmp(int M[][max],int n){
@@ -109,6 +142,9 @@ void mostrarAmp2(int M[][max], int n, int VV[]){
         i++;
     }
 }
+
+//version correcta
+
 
 
 
